@@ -1,0 +1,123 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #fff;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  padding-top: 92px; /* For fixed navbar */
+}
+
+.admin-sidebar {
+  width: 260px;
+  background-color: #111;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  position: fixed;
+  top: 92px; /* For fixed navbar */
+  height: calc(100vh - 92px);
+}
+
+.admin-sidebar__header {
+  margin-bottom: 2.5rem;
+}
+
+.admin-sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.admin-sidebar__tag {
+  font-size: 0.75rem;
+  background-color: #222;
+  color: #888;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.admin-nav-item:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.admin-nav-item.is-active {
+  background-color: #222;
+  color: #fff;
+  font-weight: 500;
+}
+
+.admin-sidebar__footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-nav-item--logout:hover {
+  color: #ef4444;
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: 260px;
+  max-width: calc(100vw - 260px);
+}
+
+.admin-header {
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid #222;
+  background-color: #0d0d0d;
+}
+
+.admin-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-content {
+  padding: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .admin-main {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
