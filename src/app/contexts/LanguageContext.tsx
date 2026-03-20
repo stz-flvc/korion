@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { jaTranslations } from './jaTranslations';
+import { zhTranslations } from './zhTranslations';
 
 export type Language = 'EN' | 'KR' | 'KO' | 'JA' | 'ZH';
 
@@ -31,8 +33,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const t = React.useCallback((en: string, kr: string, ja?: string, zh?: string) => {
     if (language === 'KR' || language === 'KO') return kr;
-    if (language === 'JA') return ja || en;
-    if (language === 'ZH') return zh || en;
+    if (language === 'JA') {
+      if (ja) return ja;
+      return jaTranslations[en] || en;
+    }
+    if (language === 'ZH') {
+      if (zh) return zh;
+      return zhTranslations[en] || en;
+    }
     return en;
   }, [language]);
 
