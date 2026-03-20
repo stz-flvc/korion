@@ -53,7 +53,7 @@ interface NavGroup {
   items: DropdownItem[];
 }
 
-type LanguageOption = 'EN' | 'KO';
+type LanguageOption = 'EN' | 'KO' | 'JA' | 'ZH';
 
 export const NavigationBar = memo(function NavigationBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,7 +64,7 @@ export const NavigationBar = memo(function NavigationBar() {
 
   const languageRef = useRef<HTMLDivElement | null>(null);
 
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, toggleLanguage, setLanguage, t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -98,6 +98,12 @@ export const NavigationBar = memo(function NavigationBar() {
 
     if (normalized === 'KO' || normalized === 'KR' || normalized === 'KOR') {
       return 'KO';
+    }
+    if (normalized === 'JA' || normalized === 'JPN') {
+      return 'JA';
+    }
+    if (normalized === 'ZH' || normalized === 'CH' || normalized === 'CHN') {
+      return 'ZH';
     }
 
     return 'EN';
@@ -360,6 +366,8 @@ export const NavigationBar = memo(function NavigationBar() {
   const languageOptions: { value: LanguageOption; code: string; label: string }[] = [
     { value: 'EN', code: 'EN', label: 'English' },
     { value: 'KO', code: 'KO', label: '한국어' },
+    { value: 'JA', code: 'JA', label: '日本語' },
+    { value: 'ZH', code: 'ZH', label: '中文' },
   ];
 
   const isItemActive = (path: string, groupKey?: string, external?: boolean) => {
@@ -370,7 +378,7 @@ export const NavigationBar = memo(function NavigationBar() {
 
   const handleLanguageChange = (target: LanguageOption) => {
     if (target !== currentLanguage) {
-      toggleLanguage();
+      setLanguage(target);
     }
     setIsLanguageOpen(false);
   };
